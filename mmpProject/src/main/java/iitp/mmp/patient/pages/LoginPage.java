@@ -3,6 +3,10 @@ package iitp.mmp.patient.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+/*
+*Log in Page
+*
+*/
 public class LoginPage {
 	
 	WebDriver driver;
