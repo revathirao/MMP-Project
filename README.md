@@ -6,6 +6,7 @@ created test script for Login page
 Modules in PAtient Module
 Created Page object Model for the registration module.
 Selenium test script using TestNG
+Hrllo2
 
 
 
