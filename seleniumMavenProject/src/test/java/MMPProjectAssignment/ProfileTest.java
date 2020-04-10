@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 
 import MMPprojectAssignment.Data;
 import iitp.mmp.patient.pages.LoginPage;
+import iitp.mmp.patient.pages.ProfilePage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 
@@ -35,15 +36,31 @@ public class ProfileTest {
 	Thread.sleep(5000);
 	
 	Data dt = new Data(driver);
-	dt.profileEdit();
+	
+	
+	HashMap<String,WebElement> hMap = dt.profileEdit();
+	
+	
+	Set<String> keySetValues = hMap.keySet();
+	
+	for(String key : keySetValues)
+	{
+		System.out.println("Key is ::"   + key);
+		System.out.println("Value is ::" +hMap.get(key));
+	}
+
+
+	dt.save();
+	dt.alertPopUp();
+	
 	
 
 
 	//Verification of alert
-	HashMap<String, String> hMap = dt.alertPopUp();
+	HashMap<String, String> hMap1 = dt.alertPopUp();
 	
 	String expectedMsg = "Your Profile has been updated.";
-	String actualMsg = hMap.get("message");
+	String actualMsg = hMap1.get("message");
 	Assert.assertEquals(actualMsg.trim(),expectedMsg.trim());
 
 	
