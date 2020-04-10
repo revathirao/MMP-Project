@@ -1,6 +1,7 @@
 package MMPprojectAssignment;
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -20,7 +21,7 @@ public class Data {
 		this.driver = driver;
 	}
 
-	public void profileEdit() throws Exception {
+	public HashMap<String, WebElement> profileEdit() throws Exception {
 
 		// click the profile menu
 		WebElement profile = driver.findElement(By.xpath("//span[contains(text(),'Profile')]"));
@@ -47,9 +48,9 @@ public class Data {
 
 			}
 		}
-		profileMap();
-
-		alertPopUp();
+		return  profileMap();
+		
+		
 
 	}
 
@@ -67,7 +68,10 @@ public class Data {
 		return PersonalDetailsMap;
 	}
 
+	//public HashMap<String, WebElement> profileMap() throws Exception {
+	
 	public HashMap<String, WebElement> profileMap() throws Exception {
+	
 
 		// Creating a HashMap object
 		PersonalDetailsMap2 = new HashMap<String, WebElement>();
@@ -96,22 +100,30 @@ public class Data {
 		String strCity = Data.dataMap().get("City");
 		WebElement city = driver.findElement(By.id("city"));
 		city.sendKeys(strCity);
-		PersonalDetailsMap2.put("City", city);
+		PersonalDetailsMap2.put("City", city);		
 
+		return PersonalDetailsMap2;
+		
+	}
+	
+	
+	public void save() throws Exception {
 		// save
 		WebElement save = driver.findElement(By.id("Sbtn"));
 		save.click();
 		Thread.sleep(3000);
-
-		return PersonalDetailsMap2;
+		
 	}
 
-	public HashMap<String, String> alertPopUp() {
+	public HashMap<String, String> alertPopUp() throws Exception {
 		HashMap<String, String> alert = new HashMap<String, String>();
 		Alert alt = driver.switchTo().alert();
 		String successMsg = alt.getText();
+		Thread.sleep(2000);
+
 		alt.accept();
 		alert.put("message", successMsg);
+					
 		return alert;
 
 	}
